@@ -6,14 +6,14 @@
         class="main-text"
         style="color: black !important; cursor: default !important"
       >
-        Admin
+        Bank-Box
       </v-list-item-title>
 
       <v-list-item-title @click="goto('main')" class="main-text mt-6">
         홈
       </v-list-item-title>
 
-      <v-list-item-title @click="goto('create')" class="main-text mt-6">
+      <v-list-item-title class="main-text mt-6">
         금융 상품 조회
       </v-list-item-title>
       <v-list-item-group class="pl-0">

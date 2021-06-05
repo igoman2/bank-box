@@ -3,23 +3,19 @@
     <v-col>
       <!-- <v-select :items="items" label="Standard" dense></v-select> -->
     </v-col>
+    <v-row justify="end">
+      <v-col cols="2">
+        <v-select :items="menus" label="상품을 고르세요" dense></v-select>
+      </v-col>
+      <v-col cols="auto">
+        <v-btn @click="submit"> 검색 </v-btn>
+      </v-col>
+    </v-row>
 
     <v-col>
-      <v-list three-line>
-        <template v-for="(item, index) in items">
-          <v-subheader
-            v-if="item.header"
-            :key="item.header"
-            v-text="item.header"
-          ></v-subheader>
-
-          <v-divider
-            v-else-if="item.divider"
-            :key="index"
-            :inset="item.inset"
-          ></v-divider>
-
-          <v-list-item v-else :key="item.title">
+      <v-list>
+        <template v-for="(item, index) in items" :keys="index">
+          <v-list-item :key="item.title" class="list-bottom-border">
             <v-list-item-avatar> </v-list-item-avatar>
 
             <v-list-item-content>
@@ -98,7 +94,6 @@ export default {
         title: "스무살 우리 정기적금",
         subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
       },
-      { divider: true, inset: true },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         bank: "우리은행",
@@ -106,7 +101,6 @@ export default {
         title: "우리 Magic 적금 by 현대카드",
         subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
       },
-      { divider: true, inset: true },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
         bank: "우리은행",
@@ -115,7 +109,6 @@ export default {
         subtitle:
           '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
       },
-      { divider: true, inset: true },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
         bank: "우리은행",
@@ -124,7 +117,6 @@ export default {
         subtitle:
           '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?',
       },
-      { divider: true, inset: true },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "IBK기업은행",
@@ -211,10 +203,21 @@ export default {
         subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
       },
     ],
+    menus: ["예금", "적금", "대출"],
   }),
   mounted() {},
-  methods: {},
+  methods: {
+    submit() {
+      alert("12");
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-bottom-border {
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(219, 218, 218);
+}
+</style>
