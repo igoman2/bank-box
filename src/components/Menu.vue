@@ -14,7 +14,7 @@
       </v-list-item-title>
 
       <v-list-item-title @click="goto('create')" class="main-text mt-6">
-        데이터 입력
+        금융 상품 조회
       </v-list-item-title>
       <v-list-item-group class="pl-0">
         <v-list-item
@@ -23,7 +23,7 @@
           style="cursor: pointer; color: red !important"
           class="pb-0 pl-0"
         >
-          — {{ "강의 정보" }}
+          — {{ "예금" }}
         </v-list-item>
         <v-list-item
           v-else
@@ -31,7 +31,7 @@
           style="cursor: pointer"
           class="pb-0 pl-0"
         >
-          — {{ "강의 정보" }}
+          — {{ "예금" }}
         </v-list-item>
         <v-list-item
           v-if="getMenu == 'purpose'"
@@ -39,7 +39,7 @@
           @click="goto('purpose')"
           style="cursor: pointer; color: red !important"
         >
-          — {{ "학습 목표" }}
+          — {{ "적금" }}
         </v-list-item>
         <v-list-item
           v-else
@@ -47,7 +47,7 @@
           @click="goto('purpose')"
           style="cursor: pointer"
         >
-          — {{ "학습 목표" }}
+          — {{ "적금" }}
         </v-list-item>
         <v-list-item
           v-if="getMenu == 'voca1'"
@@ -55,7 +55,7 @@
           style="cursor: pointer; color: red !important"
           class="pb-0 pl-0"
         >
-          — {{ "어휘" }}
+          — {{ "대출" }}
         </v-list-item>
         <v-list-item
           v-else
@@ -63,56 +63,51 @@
           style="cursor: pointer"
           class="pb-0 pl-0"
         >
-          — {{ "어휘" }}
+          — {{ "대출" }}
+        </v-list-item>
+      </v-list-item-group>
+
+      <v-list-item-title @click="goto('create')" class="main-text mt-6">
+        이자 계산기
+      </v-list-item-title>
+      <v-list-item-group class="pl-0">
+        <v-list-item
+          v-if="getMenu == 'information'"
+          @click="goto('information')"
+          style="cursor: pointer; color: red !important"
+          class="pb-0 pl-0"
+        >
+          — {{ "예/적금 이자 계산" }}
         </v-list-item>
         <v-list-item
-          @click="goto(quiz)"
+          v-else
+          @click="goto('information')"
           style="cursor: pointer"
           class="pb-0 pl-0"
         >
-          — {{ "퀴즈" }}
+          — {{ "예/적금 이자 계산" }}
+        </v-list-item>
+      </v-list-item-group>
+
+      <v-list-item-title @click="goto('create')" class="main-text mt-6">
+        투자 상품 추천
+      </v-list-item-title>
+      <v-list-item-group class="pl-0">
+        <v-list-item
+          v-if="getMenu == 'information'"
+          @click="goto('information')"
+          style="cursor: pointer; color: red !important"
+          class="pb-0 pl-0"
+        >
+          — {{ "펀드 추천" }}
         </v-list-item>
         <v-list-item
-          @click="goto(conversation)"
+          v-else
+          @click="goto('information')"
           style="cursor: pointer"
           class="pb-0 pl-0"
         >
-          — {{ "대화" }}
-        </v-list-item>
-        <v-list-item
-          @click="goto(pron)"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "발음" }}
-        </v-list-item>
-        <v-list-item
-          @click="goto(grammer)"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "문법&표현" }}
-        </v-list-item>
-        <v-list-item
-          @click="goto(culture)"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "문화" }}
-        </v-list-item>
-        <v-list-item
-          @click="goto(finish)"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "마무리" }}
-        </v-list-item>
-        <v-list-item
-          @click="goto(common)"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "Common words" }}
+          — {{ "펀드 추천" }}
         </v-list-item>
       </v-list-item-group>
     </v-list>

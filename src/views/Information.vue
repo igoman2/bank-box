@@ -1,132 +1,219 @@
 <template>
   <v-container>
-    <Lesson />
-    <v-row>
-      <v-col cols="9">
-        <v-row no-gutters>
-          <v-col cols="12" class="pb-0 mt-14">Package Title</v-col>
-          <v-col cols="12" class="pt-0">
-            <v-text-field dense outlined v-model="packageTitle"></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col cols="12" class="pb-0">Package Description</v-col>
-          <v-col cols="12" class="pt-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="packageDescription"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col cols="12" class="pb-0">Lesson No.</v-col>
-          <v-col cols="12" class="pt-0">
-            <v-text-field dense outlined v-model="lessonNumber"></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col cols="12" class="pb-0">Lesson Title(한국어)</v-col>
-          <v-col cols="12" class="pt-0">
-            <v-text-field dense outlined v-model="lessonTitle"></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col cols="12" class="pb-0">Lesson Title(번역)</v-col>
-          <v-col cols="12" class="pt-0">
-            <v-text-field
-              dense
-              outlined
-              v-model="lessonTitleTrans"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-col cols="12" class="pb-0 d-flex">
-            <span>Lesson Description</span>
-          </v-col>
-          <v-col cols="12" class="pt-0">
-            <QuillEditor :description="description" @input="getEditorInput" />
-          </v-col>
-        </v-row>
+    <v-col>
+      <!-- <v-select :items="items" label="Standard" dense></v-select> -->
+    </v-col>
 
-        <v-row no-gutters justify="space-between">
-          <v-col cols="3" class="pb-0"> Comment </v-col>
-          <v-col cols="3" class="pb-0 pt-0" align="end">
-            <v-btn @click="add" color="primary" class="pt-0 pb-0">+Add</v-btn>
-          </v-col>
+    <v-col>
+      <v-list three-line>
+        <template v-for="(item, index) in items">
+          <v-subheader
+            v-if="item.header"
+            :key="item.header"
+            v-text="item.header"
+          ></v-subheader>
 
-          <v-col cols="12" class="" v-for="i in number" :key="i">
-            <v-textarea
-              height="150px"
-              dense
-              label="내용을 입력해주세요"
-              outlined
-              v-model="comment[i]"
-            ></v-textarea>
-          </v-col>
-        </v-row>
-        <v-row no-gutters justify="end">
-          <v-btn @click="save" style="background-color: green; color: white">
-            Save
-          </v-btn>
-          <v-btn @click="next" class="ml-3"> Next </v-btn>
-        </v-row>
-      </v-col>
-    </v-row>
+          <v-divider
+            v-else-if="item.divider"
+            :key="index"
+            :inset="item.inset"
+          ></v-divider>
+
+          <v-list-item v-else :key="item.title">
+            <v-list-item-avatar> </v-list-item-avatar>
+
+            <v-list-item-content>
+              <v-list-item-title v-html="item.bank"></v-list-item-title>
+              <v-list-item-title v-html="item.title"></v-list-item-title>
+              <v-list-item-subtitle
+                v-html="item.subtitle"
+              ></v-list-item-subtitle>
+              <v-list-item-subtitle
+                v-html="item.subtitle"
+              ></v-list-item-subtitle
+              ><v-list-item-subtitle
+                v-html="item.subtitle"
+              ></v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-list>
+      <v-pagination v-model="page" :length="6"></v-pagination>
+    </v-col>
   </v-container>
 </template>
-
 <script>
-import dedent from "dedent";
-
 export default {
   name: "Information",
-  components: {
-    Lesson: () => import("@/components/Lesson"),
-    QuillEditor: () => import("@/components/editor/QuillEditor"),
-  },
+  components: {},
   data: () => ({
-    packageTitle: "",
-    packageDescription: "",
-    lessonNumber: "",
-    lessonTitle: "",
-    lessonTitleTrans: "",
-    language: "",
-    number: 1,
-    comment: [],
-    description: dedent`
-          <h1 class="ql-align-center"><s class="ql-font-serif">I am bubble example!</s></h1><p><br></p><p><span class="ql-font-serif">Whenever you play the game of thrones, you either win or die. There is no middle ground.</span></p><p><strong class="ql-font-serif">Some war against sword and spear to win, and the others the crow and the paper to win.</strong></p><p><br></p><p><u class="ql-font-serif">Dead history is write in ink, the living sort in blood.</u></p><p><em class="ql-font-serif">They're only numbers. Numbers on paper. Once you understand that, it's easy to make them behave.</em></p><p><br></p><p><span class="ql-font-serif">Every time we deal with an enemy, we create two more.</span></p><p><span class="ql-font-serif">So the king has decreed. The small council consents.</span></p><p><br></p><p><span class="ql-font-serif">Chaos not is a pit, chaos is a ladder.</span></p><p><span class="ql-font-serif">A chain needs all sorts of metals, and a land needs all sorts of people.</span></p><p><br></p><p><span class="ql-font-serif">When the snows fall and the white winds blow, the lone wolf dies, but the pack survives.</span></p>
-        `,
+    page: 1,
+    items: [
+      { header: "Today" },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 주거래 드림(Dream)적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 스마트 적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 첫급여 드림(DREAM) 적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 첫거래 세배드림(DREAM) 적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 S드림(DREAM) 적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "우리은행",
+        title: "WON 적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "우리은행",
+        title: "우리 Magic 적금 by 우리카드",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "우리은행",
+        title: "스무살 우리 정기적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      { divider: true, inset: true },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        bank: "우리은행",
 
-    editor: null,
+        title: "우리 Magic 적금 by 현대카드",
+        subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
+      },
+      { divider: true, inset: true },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "우리은행",
+
+        title: "시니어플러스 우리적금",
+        subtitle:
+          '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
+      },
+      { divider: true, inset: true },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+        bank: "우리은행",
+
+        title: "우리 SUPER주가래 정기적금",
+        subtitle:
+          '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?',
+      },
+      { divider: true, inset: true },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "IBK기업은행",
+        title: "i-ONE 놀이터적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "IBK기업은행",
+        title: "IBK D-day적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "IBK기업은행",
+        title: "IBK첫만남통장",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "IBK기업은행",
+        title: "IBK W소확행통장",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "IBK기업은행",
+        title: "IBK SOPITV NOW적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "IBK기업은행",
+        title: "IBK생활금융적금",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "KB국민은행",
+        title: "KB내맘대로적금",
+        interest: "2%",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "KB국민은행",
+        title: "직장인우대적금",
+        interest: "1,95%",
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "KB국민은행",
+        title: "KB장병내일준비적금",
+        interest: 5.5,
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "KB국민은행",
+        title: "KB맑은하늘적금",
+        interest: 2.1,
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "KB국민은행",
+        title: "KB국민ONE적금",
+        interest: 1.65,
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "KB국민은행",
+        title: "KB마이핏적금",
+        interest: 2.7,
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "KB국민은행",
+        title: "KB Young Youth 적금",
+        interest: 2.15,
+        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+      },
+    ],
   }),
   mounted() {},
-  beforeDestroy() {},
-  methods: {
-    getEditorInput: function (input) {
-      this.description = input;
-    },
-    add() {
-      this.number++;
-    },
-    next() {
-      this.$store.dispatch("menuMutation", { newMenu: "purpose" });
-      this.$router.push({
-        path: "purpose",
-      });
-    },
-    save() {
-      this.$store.dispatch("menuMutation", { newMenu: this.newMenu });
-      this.$store.dispatch("languageMutation", { newLan: this.language });
-      console.log(this.packageTitle);
-      console.log(this.packageDescription);
-      console.log(this.lessonNumber);
-      console.log(this.lessonTitle);
-      console.log(this.lessonTitleTrans);
-      console.log(this.comment);
-    },
-  },
+  methods: {},
 };
 </script>
 
