@@ -5,7 +5,12 @@
     </v-col>
     <v-row justify="end">
       <v-col cols="2">
-        <v-select :items="menus" label="상품을 고르세요" dense></v-select>
+        <v-select
+          :items="menus"
+          label="상품을 고르세요"
+          dense
+          v-model="menu"
+        ></v-select>
       </v-col>
       <v-col cols="auto">
         <v-btn @click="submit"> 검색 </v-btn>
@@ -44,71 +49,8 @@ export default {
   components: {},
   data: () => ({
     page: 1,
+    menu: "",
     items: [
-      { header: "Today" },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "신한은행",
-        title: "신한 주거래 드림(Dream)적금",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "신한은행",
-        title: "신한 스마트 적금",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "신한은행",
-        title: "신한 첫급여 드림(DREAM) 적금",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "신한은행",
-        title: "신한 첫거래 세배드림(DREAM) 적금",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "신한은행",
-        title: "신한 S드림(DREAM) 적금",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "우리은행",
-        title: "WON 적금",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "우리은행",
-        title: "우리 Magic 적금 by 우리카드",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        bank: "우리은행",
-        title: "스무살 우리 정기적금",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        bank: "우리은행",
-
-        title: "우리 Magic 적금 by 현대카드",
-        subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
-      },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
-        bank: "우리은행",
-
-        title: "시니어플러스 우리적금",
-        subtitle:
-          '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
-      },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
         bank: "우리은행",
@@ -208,7 +150,88 @@ export default {
   mounted() {},
   methods: {
     submit() {
-      alert("12");
+      if (this.menu == "예금") {
+        this.items = [
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "신한은행",
+            title: "신한 주거래 드림(Dream)적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "신한은행",
+            title: "신한 스마트 적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+        ];
+      } else {
+        this.items = [
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "신한은행",
+            title: "신한 주거래 드림(Dream)적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "신한은행",
+            title: "신한 스마트 적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "신한은행",
+            title: "신한 첫급여 드림(DREAM) 적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "신한은행",
+            title: "신한 첫거래 세배드림(DREAM) 적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "신한은행",
+            title: "신한 S드림(DREAM) 적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "우리은행",
+            title: "WON 적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "우리은행",
+            title: "우리 Magic 적금 by 우리카드",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+            bank: "우리은행",
+            title: "스무살 우리 정기적금",
+            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+            bank: "우리은행",
+
+            title: "우리 Magic 적금 by 현대카드",
+            subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
+          },
+          {
+            avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+            bank: "우리은행",
+
+            title: "시니어플러스 우리적금",
+            subtitle:
+              '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
+          },
+        ];
+      }
     },
   },
 };
