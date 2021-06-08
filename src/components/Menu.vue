@@ -16,116 +16,110 @@
       <v-list-item-title class="main-text mt-6">
         금융 상품 조회
       </v-list-item-title>
-      <v-list-item-group class="pl-0">
-        <v-list-item
-          v-if="getMenu == 'deposit'"
-          @click="goto('deposit')"
-          style="cursor: pointer; color: red !important"
-          class="pb-0 pl-0"
-        >
-          — {{ "예금" }}
-        </v-list-item>
-        <v-list-item
-          v-else
-          @click="goto('deposit')"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "예금" }}
-        </v-list-item>
-        <v-list-item
-          v-if="getMenu == 'saving'"
-          class="pb-0 pl-0"
-          @click="goto('saving')"
-          style="cursor: pointer; color: red !important"
-        >
-          — {{ "적금" }}
-        </v-list-item>
-        <v-list-item
-          v-else
-          class="pb-0 pl-0"
-          @click="goto('saving')"
-          style="cursor: pointer"
-        >
-          — {{ "적금" }}
-        </v-list-item>
-        <v-list-item
-          v-if="getMenu == 'voca1'"
-          @click="goto('loan')"
-          style="cursor: pointer; color: red !important"
-          class="pb-0 pl-0"
-        >
-          — {{ "대출" }}
-        </v-list-item>
-        <v-list-item
-          v-else
-          @click="goto('loan')"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "대출" }}
-        </v-list-item>
-      </v-list-item-group>
+      <v-list-item
+        v-if="getMenu == 'deposit'"
+        @click="goto('deposit')"
+        style="cursor: pointer; color: red !important"
+        class="pb-0 pl-0"
+      >
+        — {{ "예금" }}
+      </v-list-item>
+      <v-list-item
+        v-else
+        @click="goto('deposit')"
+        style="cursor: pointer"
+        class="pb-0 pl-0"
+      >
+        — {{ "예금" }}
+      </v-list-item>
+      <v-list-item
+        v-if="getMenu == 'saving'"
+        class="pb-0 pl-0"
+        @click="goto('saving')"
+        style="cursor: pointer; color: red !important"
+      >
+        — {{ "적금" }}
+      </v-list-item>
+      <v-list-item
+        v-else
+        class="pb-0 pl-0"
+        @click="goto('saving')"
+        style="cursor: pointer"
+      >
+        — {{ "적금" }}
+      </v-list-item>
+      <v-list-item
+        v-if="getMenu == 'loan'"
+        @click="goto('loan')"
+        style="cursor: pointer; color: red !important"
+        class="pb-0 pl-0"
+      >
+        — {{ "대출" }}
+      </v-list-item>
+      <v-list-item
+        v-else
+        @click="goto('loan')"
+        style="cursor: pointer"
+        class="pb-0 pl-0"
+      >
+        — {{ "대출" }}
+      </v-list-item>
 
       <v-list-item-title class="main-text mt-6">
         이자 계산기
       </v-list-item-title>
-      <v-list-item-group class="pl-0">
-        <v-list-item
-          v-if="getMenu == 'calculate'"
-          @click="goto('calculate-deposit')"
-          style="cursor: pointer; color: red !important"
-          class="pb-0 pl-0"
-        >
-          — {{ "예금 이자 계산" }}
-        </v-list-item>
-        <v-list-item
-          v-else
-          @click="goto('calculate-deposit')"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "예금 이자 계산" }}
-        </v-list-item>
-        <v-list-item
-          v-if="getMenu == 'calculate'"
-          @click="goto('calculate-saving')"
-          style="cursor: pointer; color: red !important"
-          class="pb-0 pl-0"
-        >
-          — {{ "적금 이자 계산" }}
-        </v-list-item>
-        <v-list-item
-          v-else
-          @click="goto('calculate-saving')"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "적금 이자 계산" }}
-        </v-list-item>
-      </v-list-item-group>
+      <v-list-item
+        v-if="getMenu == 'calculate-deposit'"
+        @click="goto('calculate-deposit')"
+        style="cursor: pointer; color: red !important"
+        class="pb-0 pl-0"
+      >
+        — {{ "예금 이자 계산" }}
+      </v-list-item>
+      <v-list-item
+        v-else
+        @click="goto('calculate-deposit')"
+        style="cursor: pointer"
+        class="pb-0 pl-0"
+      >
+        — {{ "예금 이자 계산" }}
+      </v-list-item>
+      <v-list-item
+        v-if="getMenu == 'calculate-saving'"
+        @click="goto('calculate-saving')"
+        style="cursor: pointer; color: red !important"
+        class="pb-0 pl-0"
+      >
+        — {{ "적금 이자 계산" }}
+      </v-list-item>
+      <v-list-item
+        v-else
+        @click="goto('calculate-saving')"
+        style="cursor: pointer"
+        class="pb-0 pl-0"
+      >
+        — {{ "적금 이자 계산" }}
+      </v-list-item>
 
-      <v-list-item-title @click="goto('create')" class="main-text mt-6">
+      <v-list-item-title class="main-text mt-6">
         투자 상품 추천
       </v-list-item-title>
-      <v-list-item-group class="pl-0">
-        <v-list-item
-          v-if="getMenu == 'recom'"
-          @click="goto('recommand')"
-          style="cursor: pointer; color: red !important"
-          class="pb-0 pl-0"
-        >
-          — {{ "펀드 추천" }}
-        </v-list-item>
-        <v-list-item
-          v-else
-          @click="goto('recommand')"
-          style="cursor: pointer"
-          class="pb-0 pl-0"
-        >
-          — {{ "펀드 추천" }}
-        </v-list-item>
-      </v-list-item-group>
+      <v-list-item
+        v-if="getMenu == 'recommand'"
+        @click="goto('recommand')"
+        style="cursor: pointer; color: red !important"
+        class="pb-0 pl-0"
+      >
+        — {{ "펀드 추천" }}
+      </v-list-item>
+      <v-list-item
+        v-else
+        @click="goto('recommand')"
+        style="cursor: pointer"
+        class="pb-0 pl-0"
+      >
+        — {{ "펀드 추천" }}
+      </v-list-item>
     </v-list>
   </v-container>
 </template>
