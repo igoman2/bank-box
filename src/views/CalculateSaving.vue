@@ -4,22 +4,22 @@
     <v-row no-gutters>
       <input
         class="border"
-        v-model="message"
+        v-model="monthly"
         placeholder="월저축액"
         type="text"
-      />원씩 <input class="border" v-model="message" placeholder="기간" /> 개월
+      />원씩 <input class="border" v-model="period" placeholder="기간" /> 개월
       간
     </v-row>
     <v-row class="pt-3" no-gutters>
       <input
         lass="border"
-        v-model="message"
+        v-model="interest"
         placeholder="금리"
         type="number"
       />%의 적금상품에 저축하면?
     </v-row>
     <v-row class="pt-3" justify="end" no-gutters>
-      <v-btn>결과 보기</v-btn>
+      <v-btn @click="calc">결과 보기</v-btn>
     </v-row>
     <v-row class="pt-3" no-gutters>
       <input type="number" v-model="result" />원</v-row
@@ -32,7 +32,10 @@ export default {
   name: "CalculateSaving",
   components: {},
   data: () => ({
-    message: "",
+    monthly: "",
+    period: "",
+    interest: "",
+    result: "",
   }),
   created() {},
   watch: {
@@ -40,7 +43,11 @@ export default {
       return (this.message = this.message.replace(/[^0-9]/g, ""));
     },
   },
-  methods: {},
+  methods: {
+    calc() {
+      this.result = 10;
+    },
+  },
 };
 </script>
 
