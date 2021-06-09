@@ -10,10 +10,10 @@
       적금상품에 저축하면?
     </v-row>
     <v-row class="pt-3" justify="end" no-gutters v-model="result">
-      <v-btn>결과 보기</v-btn>
+      <v-btn @click="calc">결과 보기</v-btn>
     </v-row>
     <v-row class="pt-3" no-gutters>
-      <input type="text" v-model="result" />원</v-row
+      <input type="text" v-model="result" readonly />원</v-row
     >
   </v-container>
 </template>
@@ -30,9 +30,27 @@ export default {
   }),
   created() {},
   watch: {
-    activeMenu: "changeMenu",
+    money() {
+      return (this.money = this.money.replace(/[^0-9]/g, ""));
+    },
+    period() {
+      return (this.period = this.period.replace(/[^0-9]/g, ""));
+    },
+    interest() {
+      return (this.interest = this.interest.replace(/[^0-9]/g, ""));
+    },
+    result() {
+      return (this.result = this.result.replace(/[^0-9]/g, ""));
+    },
   },
-  methods: {},
+  methods: {
+    calc() {
+      let result = (this.money * this.period * this.interest) / 100 / 12;
+      // 이자소득세 15.4%
+      result = result - result * 0.154;
+      this.result = Math.round(result);
+    },
+  },
 };
 </script>
 

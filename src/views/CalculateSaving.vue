@@ -4,7 +4,7 @@
     <v-row no-gutters>
       <input
         class="border"
-        v-model="monthly"
+        v-model="money"
         placeholder="월저축액"
         type="text"
       />원씩 <input class="border" v-model="period" placeholder="기간" /> 개월
@@ -22,7 +22,7 @@
       <v-btn @click="calc">결과 보기</v-btn>
     </v-row>
     <v-row class="pt-3" no-gutters>
-      <input type="number" v-model="result" />원</v-row
+      <input type="number" v-model="result" readonly />원</v-row
     >
   </v-container>
 </template>
@@ -32,20 +32,31 @@ export default {
   name: "CalculateSaving",
   components: {},
   data: () => ({
-    monthly: "",
+    money: "",
     period: "",
     interest: "",
     result: "",
   }),
   created() {},
   watch: {
-    message() {
-      return (this.message = this.message.replace(/[^0-9]/g, ""));
+    money() {
+      return (this.money = this.money.replace(/[^0-9]/g, ""));
+    },
+    period() {
+      return (this.period = this.period.replace(/[^0-9]/g, ""));
+    },
+    interest() {
+      return (this.interest = this.interest.replace(/[^0-9]/g, ""));
+    },
+    result() {
+      return (this.result = this.result.replace(/[^0-9]/g, ""));
     },
   },
   methods: {
     calc() {
-      this.result = 10;
+      let result;
+      result = this.money * Math.pow(1 + this.interest / 100, this.period);
+      this.result = Math.round(result);
     },
   },
 };
