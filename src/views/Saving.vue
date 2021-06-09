@@ -22,24 +22,21 @@
         <template v-for="(item, index) in items" :keys="index">
           <v-list-item :key="item.title" class="list-bottom-border">
             <v-list-item-avatar> </v-list-item-avatar>
-
-            <v-list-item-content>
-              <v-list-item-title v-html="item.bank"></v-list-item-title>
-              <v-list-item-title v-html="item.title"></v-list-item-title>
-              <v-list-item-subtitle
-                v-html="item.subtitle"
-              ></v-list-item-subtitle>
-              <v-list-item-subtitle
-                v-html="item.subtitle"
-              ></v-list-item-subtitle
-              ><v-list-item-subtitle
-                v-html="item.subtitle"
-              ></v-list-item-subtitle>
+            <v-list-item-content @click="goto(item.url)" class="item">
+              <v-col cols="11">
+                <v-list-item-title v-html="item.bank"></v-list-item-title>
+                <v-list-item-title v-html="item.title"></v-list-item-title>
+              </v-col>
+              <v-col cols="1">
+                <v-row no-gutters justify="end" class="interest">
+                  {{ item.interest + "%" }}
+                </v-row>
+              </v-col>
             </v-list-item-content>
           </v-list-item>
         </template>
       </v-list>
-      <v-pagination v-model="page" :length="6"></v-pagination>
+      <v-pagination v-model="page" :length="5" circle></v-pagination>
     </v-col>
   </v-container>
 </template>
@@ -51,203 +48,270 @@ export default {
     page: 1,
     menu: "",
     items: [
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
-        bank: "우리은행",
-        title: "우리 SUPER주가래 정기적금",
-        interest: 2.5,
-        subtitle:
-          '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?',
-      },
+      // 적금
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "IBK기업은행",
         title: "i-ONE 놀이터적금",
-        interest: 3.0,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        interest: 1.8,
+        url:
+          "https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "IBK기업은행",
         title: "IBK D-day적금",
-        interest: 1.5,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        interest: 2.5,
+        url:
+          "https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "IBK기업은행",
         title: "IBK첫만남통장",
-        interest: 3.5,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        interest: 2,
+        url:
+          "https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "IBK기업은행",
         title: "IBK W소확행통장",
-        interest: 2.0,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        interest: 3.1,
+        url:
+          "https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "IBK기업은행",
         title: "IBK SOPITV NOW적금",
-        interest: 3.2,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        interest: 5,
+        url:
+          "https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "IBK기업은행",
         title: "IBK생활금융적금",
         interest: 2.5,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp",
       },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "IBK기업은행",
+        title: "IBK웅진스마트올통장[적립식중금채]",
+        interest: 7,
+        url:
+          "https://mybank.ibk.co.kr/uib/jsp/guest/ntr/ntr70/ntr7010/PNTR701000_i2.jsp",
+      },
+
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "KB국민은행",
         title: "KB내맘대로적금",
         interest: 2,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000821",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "KB국민은행",
         title: "직장인우대적금",
         interest: 1.95,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000228",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "KB국민은행",
         title: "KB장병내일준비적금",
         interest: 5.5,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000939",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "KB국민은행",
         title: "KB맑은하늘적금",
         interest: 2.1,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000942",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "KB국민은행",
         title: "KB국민ONE적금",
         interest: 1.65,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000333",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "KB국민은행",
         title: "KB마이핏적금",
         interest: 2.7,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01001242",
       },
       {
         avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
         bank: "KB국민은행",
         title: "KB Young Youth 적금",
         interest: 2.15,
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        url:
+          "https://obank.kbstar.com/quics?page=C016613&cc=b061496:b061645&isNew=N&prcode=DP01000940",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 주거래 드림(Dream)적금",
+        interest: 1.9,
+        url:
+          "https://bank.shinhan.com/index.jsp?referrer=https%3A%2F%2Fwww.google.com%2F#020102010110",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 스마트 적금",
+        interest: 1.6,
+        url:
+          "https://bank.shinhan.com/index.jsp?referrer=https%3A%2F%2Fwww.google.com%2F#020102010110",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 첫급여 드림(DREAM) 적금",
+        interest: 4.2,
+        url:
+          "https://bank.shinhan.com/index.jsp?referrer=https%3A%2F%2Fwww.google.com%2F#020102010110",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 첫거래 세배드림(DREAM) 적금",
+        interest: 2.4,
+        url:
+          "https://bank.shinhan.com/index.jsp?referrer=https%3A%2F%2Fwww.google.com%2F#020102010110",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "신한은행",
+        title: "신한 S드림(DREAM) 적금",
+        interest: 1,
+        url:
+          "https://bank.shinhan.com/index.jsp?referrer=https%3A%2F%2Fwww.google.com%2F#020102010110",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "우리은행",
+        title: "WON 적금",
+        interest: 1.9,
+        url:
+          "https://spot.wooribank.com/pot/Dream?withyou=PODEP0021&cc=c007095:c009166;c012263:c012399&PLM_PDCD=P010002353&PRD_CD=P010002353&ALL_GB=&depKind=A04",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "우리은행",
+        title: "우리 Magic 적금 by 우리카드",
+        interest: 6,
+        url:
+          "https://spot.wooribank.com/pot/Dream?withyou=PODEP0021&cc=c007095:c009166;c012263:c012399&PLM_PDCD=P010002409&PRD_CD=P010002409&ALL_GB=&depKind=A04",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        bank: "우리은행",
+        title: "스무살 우리 정기적금",
+        interest: 3,
+        url:
+          "https://spot.wooribank.com/pot/Dream?withyou=PODEP0021&cc=c007095:c009166;c012263:c012399&PLM_PDCD=P010002291&PRD_CD=P010002291&ALL_GB=&depKind=A04",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        bank: "우리은행",
+        title: "우리 Magic 적금 by 현대카드",
+        interest: 5.7,
+        url:
+          "https://spot.wooribank.com/pot/Dream?withyou=PODEP0021&cc=c007095:c009166;c012263:c012399&PLM_PDCD=P010002384&PRD_CD=P010002384&ALL_GB=&depKind=A04",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "우리은행",
+        title: "시니어플러스 우리적금",
+        interest: 1.56,
+        url:
+          "https://spot.wooribank.com/pot/Dream?withyou=PODEP0021&cc=c007095:c009166;c012263:c012399&PLM_PDCD=P010002345&PRD_CD=P010002345&ALL_GB=&depKind=A04",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "하나은행",
+        title: "하나의 여행 적금",
+        interest: 2.3,
+        url:
+          "https://kebhana.com/cont/mall/mall08/mall0801/mall080102/1473850_115157.jsp",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "하나은행",
+        title: "펫사랑 적금",
+        interest: 1.5,
+        url:
+          "https://kebhana.com/cont/mall/mall08/mall0801/mall080102/1470991_115157.jsp",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "하나은행",
+        title: "하나 원큐 적금",
+        interest: 2,
+        url:
+          "https://kebhana.com/cont/mall/mall08/mall0801/mall080102/1462078_115157.jsp",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "하나은행",
+        title: "금연 성공 적금",
+        interest: 2.5,
+        url:
+          "https://kebhana.com/cont/mall/mall08/mall0801/mall080102/1465820_115157.jsp",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "하나은행",
+        title: "평생 군인 적금",
+        interest: 4.5,
+        url:
+          "https://kebhana.com/cont/mall/mall08/mall0801/mall080102/1463826_115157.jsp",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "하나은행",
+        title: "(아이)꿈하나 적금",
+        interest: 1.5,
+        url:
+          "https://kebhana.com/cont/mall/mall08/mall0801/mall080102/1452125_115157.jsp",
+      },
+      {
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        bank: "하나은행",
+        title: "도전365 적금",
+        interest: 2,
+        url:
+          "https://kebhana.com/cont/mall/mall08/mall0801/mall080102/1452858_115157.jsp",
       },
     ],
-    menus: ["예금", "적금", "대출"],
+    menus: ["IBK기업은행", "신한은행", "국민은행", "우리은행", "하나은행"],
   }),
   mounted() {},
   methods: {
     submit() {
       if (this.menu == "예금") {
-        this.items = [
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "신한은행",
-            title: "신한 주거래 드림(Dream)적금",
-            interest: 1.95,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "신한은행",
-            title: "신한 스마트 적금",
-            interest: 3.5,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-        ];
+        this.items = [];
       } else {
-        this.items = [
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "신한은행",
-            title: "신한 주거래 드림(Dream)적금",
-            interest: 2.0,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "신한은행",
-            title: "신한 스마트 적금",
-            interest: 2.5,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "신한은행",
-            title: "신한 첫급여 드림(DREAM) 적금",
-            interest: 1.95,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "신한은행",
-            title: "신한 첫거래 세배드림(DREAM) 적금",
-            interest: 3.0,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "신한은행",
-            title: "신한 S드림(DREAM) 적금",
-            interest: 2.7,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "우리은행",
-            title: "WON 적금",
-            interest: 2.6,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "우리은행",
-            title: "우리 Magic 적금 by 우리카드",
-            interest: 1.6,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-            bank: "우리은행",
-            title: "스무살 우리 정기적금",
-            interest: 2.5,
-            subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-            bank: "우리은행",
-            title: "우리 Magic 적금 by 현대카드",
-            interest: 3.0,
-            subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
-          },
-          {
-            avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
-            bank: "우리은행",
-            title: "시니어플러스 우리적금",
-            interest: 2.8,
-            subtitle:
-              '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
-          },
-        ];
+        this.items = [];
       }
+    },
+    goto(url) {
+      window.open(url);
     },
   },
 };
@@ -258,5 +322,11 @@ export default {
   border-bottom: 1px;
   border-bottom-style: solid;
   border-bottom-color: rgb(219, 218, 218);
+}
+.item {
+  cursor: pointer;
+}
+.interest {
+  background-color: yellow;
 }
 </style>
