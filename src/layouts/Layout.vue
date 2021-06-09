@@ -1,13 +1,9 @@
 <template>
-  <v-row style="height: 800px">
+  <v-row style="height: 100%" no-gutters>
     <v-col
       cols="auto"
-      class="pt-0"
-      style="
-        width: 200px;
-        margin-left: 50px;
-        background-color: rgb(235, 245, 255) !important;
-      "
+      class="pt-0 mr-10 pl-4"
+      style="width: 210px; background-color: rgb(235, 245, 255) !important"
     >
       <Menu />
     </v-col>
