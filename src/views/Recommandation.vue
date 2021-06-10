@@ -1,5 +1,148 @@
 <template>
-  <v-container> asd </v-container>
+  <v-container fluid>
+    현재 고객님의 나이는 어떻게 되십니까?
+    <v-radio-group v-model="row" row>
+      <v-radio label="Option 1" value="radio-1"></v-radio>
+      <v-radio label="Option 2" value="radio-2"></v-radio>
+    </v-radio-group>
+
+    향후 고객님의 연간수입원에 대한 예상은 어떻게 되십니까?
+    <v-radio-group v-model="row" col>
+      <v-radio
+        label="현재 일정한 수입이 없으며, 연금이 주 수입원임"
+        value="radio-1"
+      ></v-radio>
+      <v-radio
+        label="현재 일정한 수입이 발생하고 있으나, 향후 감소하거나 불안정할 것으로 예상"
+        value="radio-2"
+      ></v-radio>
+      <v-radio
+        label="현재 일정한 수입이 발생하고 있으며, 향후 현재 수준을 유지하거나 증가할 것으로 예상"
+        value="radio-2"
+      ></v-radio>
+    </v-radio-group>
+
+    기존에 보유하고 계신 총자산 대비 금융자산의 비중은 어느 정도입니까?
+    <v-radio-group v-model="row" row>
+      <v-radio label="5% 이하" value="radio-1"></v-radio>
+      <v-radio label="10% 이하" value="radio-2"></v-radio>
+      <v-radio label="20% 이하" value="radio-2"></v-radio>
+      <v-radio label="30% 이하" value="radio-2"></v-radio>
+      <v-radio label="30% 초과" value="radio-2"></v-radio>
+    </v-radio-group>
+    투자해 보신 경험이 있는 것을 모두 선택해 주십시오(중복체크 가능)
+    <v-radio-group v-model="row" row class="pa-0" multiple>
+      <v-checkbox label="주식 신용 거래" value="radio-1"></v-checkbox>
+      <v-checkbox class="ml-4" label="선물 / 옵션" value="radio-2"></v-checkbox>
+      <v-checkbox class="ml-4" label="ELW" value="radio-2"></v-checkbox>
+      <v-checkbox
+        class="ml-4"
+        label="원금비보장형ELS/DLS/EL"
+        value="radio-2"
+      ></v-checkbox>
+    </v-radio-group>
+    <v-radio-group v-model="row" row class="pa-0">
+      <v-radio label="1년 미만" value="radio-1"></v-radio>
+      <v-radio label="1년 이상 3년 미만" value="radio-2"></v-radio>
+      <v-radio label="3년 이상" value="radio-2"></v-radio>
+    </v-radio-group>
+    <v-row class="list-bottom-border"> </v-row>
+
+    <v-radio-group v-model="row" row class="pa-0" multiple>
+      <v-radio label="주식 신용 거래" value="radio-1"></v-radio>
+      <v-radio label="선물 / 옵션" value="radio-2"></v-radio>
+      <v-radio label="ELW" value="radio-2"></v-radio>
+      <v-radio label="원금비보장형ELS/DLS/EL" value="radio-2"></v-radio>
+    </v-radio-group>
+    <v-radio-group v-model="row" row class="pa-0">
+      <v-radio label="1년 미만" value="radio-1"></v-radio>
+      <v-radio label="1년 이상 3년 미만" value="radio-2"></v-radio>
+      <v-radio label="3년 이상" value="radio-2"></v-radio>
+    </v-radio-group>
+    <v-row class="list-bottom-border"> </v-row>
+
+    <v-radio-group v-model="row" row class="pa-0" multiple>
+      <v-radio label="주식 신용 거래" value="radio-1"></v-radio>
+      <v-radio label="선물 / 옵션" value="radio-2"></v-radio>
+      <v-radio label="ELW" value="radio-2"></v-radio>
+      <v-radio label="원금비보장형ELS/DLS/EL" value="radio-2"></v-radio>
+    </v-radio-group>
+    <v-radio-group v-model="row" row class="pa-0">
+      <v-radio label="1년 미만" value="radio-1"></v-radio>
+      <v-radio label="1년 이상 3년 미만" value="radio-2"></v-radio>
+      <v-radio label="3년 이상" value="radio-2"></v-radio>
+    </v-radio-group>
+    고객님은 다음 중 어떤 목적으로 투자하는 편입니까?
+    <v-radio-group v-model="row" row>
+      <v-radio
+        label="원금보존 가능성을 포기하기 어렵기 때문에 예적금 수익률 보다 1~2%정도만 더 나오면 됨 (투자수익을 고려하나 원금보존이 더 중요)"
+        value="radio-1"
+      ></v-radio>
+      <v-radio
+        label="예적금 수익률보다 3~5%정도 기대할 수 있다면 원금보존 가능성은 좀 포기할 수 있음 (원금보존을 고려하나 투자수익이 더 중요)"
+        value="radio-2"
+      ></v-radio>
+      <v-radio
+        label="고수익을 기대하고 있으며, 원금손실 가능성은 감수할 수 있음 (손실 위험이 있더라도 투자수익이 더 중요)"
+        value="radio-2"
+      ></v-radio>
+    </v-radio-group>
+    고객님께서 감내하실 수 있는 투자수익 및 위험수준은 어느정도 입니까?
+    <v-radio-group v-model="row" row>
+      <v-radio
+        label="무슨 일이 있어도 투자 원금은 보전되어야 한다."
+        value="radio-1"
+      ></v-radio>
+      <v-radio
+        label="±10% 정도만 변동하더라도, 매도하고 빠져나와야 안심이 될 것 같다(±10% 범위 내 감수)"
+        value="radio-2"
+      ></v-radio>
+      <v-radio
+        label="±20% 정도까지는 당황하지 않고 기다리거나 상황에 따라서 추가매수 등 대응도 문제없다(±20% 범위 내 감수)"
+        value="radio-2"
+      ></v-radio>
+      <v-radio
+        label="±30% 정도 변동은 버틸 수 있으며, 때때로 그 이상의 변동을 기대하여 적극적으로 운용하려고 한다(±30% 범위 내 감수)"
+        value="radio-2"
+      ></v-radio>
+    </v-radio-group>
+    고객님의 금융지식 수준(이해도)은 어느 정도라고 생각하십니까?
+    <v-radio-group v-model="row" row>
+      <v-radio
+        label="예적금 외에 다른 금융투자상품에 투자해본적이 없음"
+        value="radio-1"
+      ></v-radio>
+      <v-radio
+        label="주식, 채권, 펀드같은 일반적인 상품 정도는 설명만 좀 들으면, 투자할지 여부를 결정할 수 있음"
+        value="radio-1"
+      ></v-radio>
+      <v-radio
+        label="주식, 채권, 펀드같은 일반적인 상품은 설명을 듣지 않아도 잘 알고 있으며, 투자 판단을 스스로 내릴 수 있음"
+        value="radio-1"
+      ></v-radio>
+      <v-radio
+        label="파생상품을 포함한 대부분의 금융투자상품에 대해서 충분히 잘 알고 있음"
+        value="radio-2"
+      ></v-radio>
+    </v-radio-group>
+    파생상품, 파생결합증권 및 파생상품펀드에 투자한 경험은 얼마나 되십니까?
+    <v-radio-group v-model="row" row>
+      <v-radio label="1년 미만" value="radio-1"></v-radio>
+      <v-radio label="1년 이상 3년 미만" value="radio-2"></v-radio>
+      <v-radio label="3년 이상" value="radio-2"></v-radio>
+    </v-radio-group>
+    고령투자자,주부,은퇴자 등 금융투자상품에 대한 이해가 부족하거나 투자경험이
+    없는 투자자의 경우 「금융소비자 보호 모범규준」에 따른 금융취약 계층으로
+    금융소비자의 불이익 사항을 다른 정보보다 우선하여 설명 받으실 수 있습니다.
+    해당 항목에 체크하여 주시기 바랍니다.
+    <v-radio-group v-model="row" row>
+      <v-radio
+        label="금융투자상품에 대한 이해가 부족하거나 투자 경험이 없음"
+        value="radio-1"
+      ></v-radio>
+      <v-radio label="해당사항 없음" value="radio-2"></v-radio>
+    </v-radio-group>
+  </v-container>
 </template>
 
 <script>
@@ -7,55 +150,19 @@ export default {
   name: "Recommandation",
   components: {},
   data: () => ({
-    activeMenu: "voca1",
-    number: 1,
-    vocaNum: 1,
-    comment: [],
-    korean: [],
-    trans: [],
-    imageFile: [],
-    audioFile: [],
+    column: null,
+    row: null,
   }),
-  created() {
-    this.activeMenu = this.$router.meta.active;
-  },
-  watch: {
-    activeMenu: "changeMenu",
-  },
-  methods: {
-    changeMenu: function () {
-      if (this.activeMenu == "voca1") {
-        this.$router.push({ path: "/voca1" });
-        this.init();
-      } else {
-        this.$router.push({ path: "/voca2" });
-        this.init();
-      }
-    },
-    add() {
-      this.number++;
-    },
-    addVoca() {
-      this.vocaNum++;
-    },
-    init() {
-      this.number = 1;
-      this.vocaNum = 1;
-      this.comment = [];
-      this.korean = [];
-      this.trans = [];
-      this.imageFile = [];
-      this.transaudioFile = [];
-    },
-    save() {
-      console.log(this.comment);
-      console.log(this.korean);
-      console.log(this.trans);
-      console.log(this.imageFile);
-      console.log(this.audioFile);
-    },
-  },
+  created() {},
+  watch: {},
+  methods: {},
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-bottom-border {
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(219, 218, 218);
+}
+</style>
