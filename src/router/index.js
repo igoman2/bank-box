@@ -48,6 +48,14 @@ const routes = [
           active: "recom",
         },
       },
+      {
+        name: "Recommand",
+        path: "recommand-invest",
+        component: () => import("../views/RecommandationSub"),
+        meta: {
+          active: "recom",
+        },
+      },
     ],
   },
 ];

@@ -1,22 +1,20 @@
 <template>
   <v-container>
-    <v-row no-gutters> 매월 일정금액을 저축할 때 </v-row>
-    <v-row no-gutters>
+    <v-row no-gutters style="font-size: 25px; font-weight: bold">
+      매월 일정금액을 저축할 때
+    </v-row>
+    <v-row no-gutters class="mt-2">
       <input
         class="border"
         v-model="money"
         placeholder="월저축액"
         type="text"
-      />원씩 <input class="border" v-model="period" placeholder="기간" /> 개월
-      간
+      />원씩
+      <input class="border ml-10" v-model="period" placeholder="기간" /> 개월 간
     </v-row>
-    <v-row class="pt-3" no-gutters>
-      <input
-        lass="border"
-        v-model="interest"
-        placeholder="금리"
-        type="number"
-      />%의 적금상품에 저축하면?
+    <v-row class="pt-5" no-gutters>
+      <input lass="border" v-model="interest" placeholder="금리" />%의
+      적금상품에 저축하면?
     </v-row>
     <v-row class="pt-3" justify="end" no-gutters>
       <v-btn @click="calc">결과 보기</v-btn>
