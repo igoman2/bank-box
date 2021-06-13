@@ -7,7 +7,7 @@
     >
       <Menu />
     </v-col>
-    <v-col cols="7" class="mt-10"><router-view /></v-col>
+    <v-col cols="9" class="mt-10"><router-view /></v-col>
   </v-row>
 </template>
 

@@ -1,15 +1,36 @@
 <template>
   <v-container fluid>
-    <div style="font-size: 30px; font-weight: bold; margin-bottom: 40px">
+    <div style="font-size: 40px; font-weight: bold; margin-bottom: 40px">
       투자 성향 위험 등급 안내 및 자가 진단
     </div>
-    <div class="question mt-0">현재 고객님의 나이는 어떻게 되십니까?</div>
+    <v-row no-gutters>
+      <v-col cols="auto" class="pa-0" style="font-size: 40px; color: #c3c3c3">
+        GUIDE
+      </v-col>
+      <v-col cols="9" offset="1" class="pa-0" style="font-size: 14px">
+        <v-row no-gutters class="pt-2">
+          ∙ 본 일반투자자 투자자정보 확인서는 자본시장과 금융투자업에 관한
+          법률에 따라 고객님의 투자성향을 파악하여, 그에 적합한 투자권유를
+          해드리기 위한 기초 자료로 활용됩니다. 고객님께 가장 적합한 투자대안을
+          제시해 드리기 위하여 정확한 답변을 필요로 하오니 최대한 고객님의
+          상황에 부합하거나 가장 가까운 항목을 선택해 주시기 바랍니다.
+        </v-row>
+        <v-row no-gutters class="">
+          ∙ 고객님께서 제공해주신 투자목적, 자산현황, 투자경험에 대한 소중한
+          정보를 바탕으로, 투자성향에 가장 적합한 상품을 추천해드리겠습니다.
+        </v-row>
+      </v-col>
+    </v-row>
+    <div class="question mt-10">
+      <span class="number"> 1 </span>현재 고객님의 나이는 어떻게 되십니까?
+    </div>
 
     <v-radio-group v-model="ages" row>
       <v-radio label="만6세 미만" value="age-1"></v-radio>
       <v-radio label="만65세 이상" value="age-2"></v-radio>
     </v-radio-group>
     <div class="question">
+      <span class="number"> 2 </span>
       향후 고객님의 연간수입원에 대한 예상은 어떻게 되십니까?
     </div>
     <v-radio-group v-model="incomes" col>
@@ -27,6 +48,7 @@
       ></v-radio>
     </v-radio-group>
     <div class="question">
+      <span class="number"> 3 </span>
       기존에 보유하고 계신 총자산 대비 금융자산의 비중은 어느 정도입니까?
     </div>
 
@@ -38,6 +60,7 @@
       <v-radio label="30% 초과" value="ratio-5"></v-radio>
     </v-radio-group>
     <div class="question">
+      <span class="number"> 4 </span>
       투자해 보신 경험이 있는 것을 모두 선택해 주십시오(중복체크 가능)
     </div>
 
@@ -94,6 +117,7 @@
       ></v-radio>
     </v-radio-group>
     <div class="question">
+      <span class="number"> 5 </span>
       고객님은 다음 중 어떤 목적으로 투자하는 편입니까?
     </div>
 
@@ -112,6 +136,7 @@
       ></v-radio>
     </v-radio-group>
     <div class="question">
+      <span class="number"> 6 </span>
       고객님께서 감내하실 수 있는 투자수익 및 위험수준은 어느정도 입니까?
     </div>
 
@@ -135,6 +160,7 @@
     </v-radio-group>
 
     <div class="question">
+      <span class="number"> 7 </span>
       고객님의 금융지식 수준(이해도)은 어느 정도라고 생각하십니까?
     </div>
 
@@ -158,6 +184,7 @@
     </v-radio-group>
 
     <div class="question">
+      <span class="number"> 8 </span>
       파생상품, 파생결합증권 및 파생상품펀드에 투자한 경험은 얼마나 되십니까?
     </div>
 
@@ -168,6 +195,7 @@
     </v-radio-group>
 
     <div class="question">
+      <span class="number"> 9 </span>
       고령투자자,주부,은퇴자 등 금융투자상품에 대한 이해가 부족하거나 투자경험이
       없는 투자자의 경우 「금융소비자 보호 모범규준」에 따른 금융취약 계층으로
       금융소비자의 불이익 사항을 다른 정보보다 우선하여 설명 받으실 수 있습니다.
@@ -182,9 +210,11 @@
       <v-radio label="해당사항 없음" value="last-2"></v-radio>
     </v-radio-group>
 
-    <div class="question">MBTI를 입력해주세요</div>
+    <div class="question">
+      <span class="number"> 10 </span>MBTI를 입력해주세요
+    </div>
+    <v-select :items="items" label="MBTI" v-model="mbti"></v-select>
 
-    <v-text-field color="purple darken-2" dense required></v-text-field>
     <v-row no-gutters justify="end" class="mt-6">
       <v-btn @click="goto"> 제출 </v-btn>
     </v-row>
@@ -196,6 +226,24 @@ export default {
   name: "Recommandation",
   components: {},
   data: () => ({
+    items: [
+      "ISTJ",
+      "ISTP",
+      "ESTP",
+      "ESTJ",
+      "ISFJ",
+      "ISFP",
+      "ESFP",
+      "ESFJ",
+      "INFJ",
+      "INFP",
+      "ENFP",
+      "ENFJ",
+      "INTJ",
+      "INTP",
+      "ENTP",
+      "ENTJ",
+    ],
     ages: null,
     incomes: null,
     ratios: null,
@@ -210,14 +258,35 @@ export default {
     informations: null,
     exps: null,
     lasts: null,
+    mbti: null,
   }),
   created() {},
   watch: {},
   methods: {
     goto() {
-      this.$router.push({
-        path: "recommand-invest",
-      });
+      if (
+        this.ages == null ||
+        this.incomes == null ||
+        this.ratios == null ||
+        this.experiences1 == null ||
+        this.experiences2 == null ||
+        this.experiences3 == null ||
+        this.experiences1_year == null ||
+        this.experiences2_year == null ||
+        this.experiences3_year == null ||
+        this.purposes == null ||
+        this.risks == null ||
+        this.informations == null ||
+        this.exps == null ||
+        this.lasts == null ||
+        this.mbti == null
+      ) {
+        alert("입력을 완료하세요");
+      } else {
+        this.$router.push({
+          path: "recommand-invest",
+        });
+      }
     },
   },
 };
@@ -233,5 +302,9 @@ export default {
   font-size: 20px;
   font-weight: bold;
   margin-top: 40px;
+}
+.number {
+  font-size: 50px;
+  font-weight: 300 !important;
 }
 </style>

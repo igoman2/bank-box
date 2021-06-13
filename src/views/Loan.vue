@@ -13,8 +13,12 @@
         <v-btn @click="submit"> 검색 </v-btn>
       </v-col>
     </v-row>
-    <v-row no-gutters class="mt-10 mb-10" style="font-weight: bold">
-      기관과 금리를 확인하고 클릭하여 상세 정보를 확인하세요
+    <v-row
+      no-gutters
+      class="mt-10 mb-10"
+      style="font-weight: bold; color: #c3c3c3"
+    >
+      ∙ 기관과 금리를 확인하고 클릭하여 상세 정보를 확인하세요
     </v-row>
     <v-row no-gutters>
       <v-col>

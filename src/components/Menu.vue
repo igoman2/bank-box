@@ -4,13 +4,13 @@
       <v-list-item-title
         @click="goto('main')"
         class="main-text"
-        style="color: black !important; cursor: default !important"
+        style="
+          font-size: 35px;
+          color: black !important;
+          cursor: pointer !important;
+        "
       >
         Bank-Box
-      </v-list-item-title>
-
-      <v-list-item-title @click="goto('main')" class="main-text mt-6">
-        홈
       </v-list-item-title>
 
       <v-list-item-title class="main-text mt-6">
@@ -127,7 +127,9 @@
 <script>
 export default {
   name: "Menu",
-  data: () => ({}),
+  data: () => ({
+    isYY: false,
+  }),
   computed: {
     getMenu: {
       get: function () {

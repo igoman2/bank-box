@@ -8,13 +8,17 @@
       <input class="border ml-10" v-model="period" placeholder="기간" /> 개월 간
     </v-row>
     <v-row class="pt-5" no-gutters>
-      <input lass="border" v-model="interest" placeholder="금리" />%의
-      예금상품에 저축하면?
+      <input
+        lass="border"
+        v-model="interest"
+        placeholder="금리"
+        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+      />%의 예금상품에 저축하면?
     </v-row>
     <v-row class="pt-3" justify="end" no-gutters v-model="result">
       <v-btn @click="calc">결과 보기</v-btn>
     </v-row>
-    <v-row class="pt-3" no-gutters>
+    <v-row class="pt-13" justify="end" no-gutters>
       <input type="text" v-model="result" readonly />원</v-row
     >
   </v-container>
@@ -32,18 +36,18 @@ export default {
   }),
   created() {},
   watch: {
-    money() {
-      return (this.money = this.money.replace(/[^0-9]/g, ""));
-    },
-    period() {
-      return (this.period = this.period.replace(/[^0-9]/g, ""));
-    },
-    interest() {
-      return (this.interest = this.interest.replace(/[^0-9]/g, ""));
-    },
-    result() {
-      return (this.result = this.result.replace(/[^0-9]/g, ""));
-    },
+    // money() {
+    //   return (this.money = this.money.replace(/[^0-9]/g, ""));
+    // },
+    // period() {
+    //   return (this.period = this.period.replace(/[^0-9]/g, ""));
+    // },
+    // interest() {
+    //   return (this.interest = this.interest.replace(/[^0-9]/g, ""));
+    // },
+    // result() {
+    //   return (this.result = this.result.replace(/[^0-9]/g, ""));
+    // },
   },
   methods: {
     calc() {
