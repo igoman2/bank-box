@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <v-row no-gutters style="font-size: 25px; font-weight: bold">
+    <v-row
+      no-gutters
+      style="font-size: 25px; font-weight: bold"
+      oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+    >
       매월 일정금액을 저축할 때
     </v-row>
     <v-row no-gutters class="mt-2">
@@ -9,8 +13,10 @@
         v-model="money"
         placeholder="월저축액"
         type="text"
+        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
       />원씩
-      <input class="border ml-10" v-model="period" placeholder="기간" /> 개월 간
+      <input class="border ml-md-10" v-model="period" placeholder="기간" /> 개월
+      간
     </v-row>
     <v-row class="pt-5" no-gutters>
       <input
@@ -40,20 +46,7 @@ export default {
     result: "",
   }),
   created() {},
-  watch: {
-    // money() {
-    //   return (this.money = this.money.replace(/[^0-9]/g, ""));
-    // },
-    // period() {
-    //   return (this.period = this.period.replace(/[^0-9]/g, ""));
-    // },
-    // interest() {
-    //   return (this.interest = this.interest.replace(/[^0-9]/g, ""));
-    // },
-    // result() {
-    //   return (this.result = this.result.replace(/[^0-9]/g, ""));
-    // },
-  },
+  watch: {},
   methods: {
     calc() {
       let result;

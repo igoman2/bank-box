@@ -129,6 +129,7 @@ export default {
   name: "Menu",
   data: () => ({
     isYY: false,
+    SidebarColor: "white",
   }),
   computed: {
     getMenu: {

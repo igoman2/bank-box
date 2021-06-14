@@ -4,8 +4,19 @@
       목돈을 예치할 때
     </v-row>
     <v-row no-gutters class="mt-2">
-      <input class="border" v-model="money" placeholder="예치금액" />원을
-      <input class="border ml-10" v-model="period" placeholder="기간" /> 개월 간
+      <input
+        class="border"
+        v-model="money"
+        placeholder="예치금액"
+        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+      />원을
+      <input
+        class="border ml-md-10"
+        v-model="period"
+        placeholder="기간"
+        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+      />
+      개월 간
     </v-row>
     <v-row class="pt-5" no-gutters>
       <input
@@ -35,20 +46,7 @@ export default {
     result: "",
   }),
   created() {},
-  watch: {
-    // money() {
-    //   return (this.money = this.money.replace(/[^0-9]/g, ""));
-    // },
-    // period() {
-    //   return (this.period = this.period.replace(/[^0-9]/g, ""));
-    // },
-    // interest() {
-    //   return (this.interest = this.interest.replace(/[^0-9]/g, ""));
-    // },
-    // result() {
-    //   return (this.result = this.result.replace(/[^0-9]/g, ""));
-    // },
-  },
+  watch: {},
   methods: {
     calc() {
       let result = (this.money * this.period * this.interest) / 100 / 12;
